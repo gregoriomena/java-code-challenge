@@ -1,11 +1,11 @@
 package com.java.code.challenge.repository;
 
+import static com.java.code.challenge.util.ProductUtil.generateRandomLetters;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import java.util.Date;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -27,9 +27,5 @@ class ProductDaoTest {
 
 		verify(storage).add(product);
 		verifyNoMoreInteractions(storage);
-	}
-
-	private String generateRandomLetters(int length) {
-		return RandomStringUtils.random(length, true, false);
 	}
 }
