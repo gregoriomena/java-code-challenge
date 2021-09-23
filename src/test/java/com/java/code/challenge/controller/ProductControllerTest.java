@@ -56,5 +56,18 @@ class ProductControllerTest {
 		verify(service).update(productDTO);
 		verifyNoMoreInteractions(service);
 	}
+
+	@Test
+	void delete(@Mock ProductService service) {
+
+
+		long productId = new Date().getTime();
+		ProductController controller = new ProductController(service);
+
+		controller.delete(productId);
+
+		verify(service).delete(productId);
+		verifyNoMoreInteractions(service);
+	}
 }
 
