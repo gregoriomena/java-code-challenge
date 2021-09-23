@@ -6,4 +6,6 @@ public interface Dao<T> {
 
 	void save(T entity);
 	List<T> findAll();
+	T findById(Long id);
+	void update(T productBO);
 }

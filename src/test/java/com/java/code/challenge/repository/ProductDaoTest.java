@@ -1,6 +1,7 @@
 package com.java.code.challenge.repository;
 
 import static com.java.code.challenge.util.ProductUtil.generateRandomLetters;
+import static com.java.code.challenge.util.ProductUtil.randomProductBO;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -36,6 +37,18 @@ class ProductDaoTest {
 		dao.findAll();
 
 		verify(storage).list();
+		verifyNoMoreInteractions(storage);
+	}
+
+	@Test
+	void update(@Mock Storage<Product> storage) {
+
+		Product product = randomProductBO();
+
+		ProductDao dao = new ProductDao(storage);
+		dao.update(product);
+
+		verify(storage).refresh(product);
 		verifyNoMoreInteractions(storage);
 	}
 }

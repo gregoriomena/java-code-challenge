@@ -27,4 +27,14 @@ public class ProductDao implements Dao<Product> {
 	public List<Product> findAll() {
 		return products.list();
 	}
+
+	@Override
+	public Product findById(Long id) {
+		return products.get(id);
+	}
+
+	@Override
+	public void update(Product productBO) {
+		products.refresh(productBO);
+	}
 }

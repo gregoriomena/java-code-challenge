@@ -15,7 +15,7 @@ public class ProductList implements Storage<Product> {
 	private Map<Long, Product> products;
 
 	public ProductList() {
-		products = new LinkedHashMap<Long, Product>();
+		products = new LinkedHashMap<>();
 	}
 
 	@Override
@@ -25,7 +25,18 @@ public class ProductList implements Storage<Product> {
 
 	@Override
 	public List<Product> list() {
-		return new ArrayList<Product>(products.values());
+		return new ArrayList<>(products.values());
+	}
+
+	@Override
+	public Product get(Long id) {
+		Product original = products.get(id);
+		return new Product(original.getId(), original.getName(), original.getDescription());
+	}
+
+	@Override
+	public void refresh(Product productBO) {
+		products.put(productBO.getId(), productBO);
 	}
 
 }
