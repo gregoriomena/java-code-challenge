@@ -41,4 +41,8 @@ public class ProductService {
 		Product productBO = mapper.destinationToSource(product);
 		dao.update(productBO);
 	}
+
+	public void delete(Long id) {
+		dao.delete(id);
+	}
 }

@@ -62,5 +62,17 @@ class ProductServiceTest {
 		verify(dao).update(productBO);
 		verifyNoMoreInteractions(dao);
 	}
+
+	@Test
+	void delete(@Mock ProductDao dao) {
+
+		long productId = new Date().getTime();
+		ProductService service = new ProductService(dao);
+
+		service.delete(productId);
+
+		verify(dao).delete(productId);
+		verifyNoMoreInteractions(dao);
+	}
 }
 
