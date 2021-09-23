@@ -34,5 +34,15 @@ class ProductServiceTest {
 		verify(dao).save(productBO);
 		verifyNoMoreInteractions(dao);
 	}
+
+	@Test
+	void read(@Mock  ProductDao dao) {
+
+		ProductService service = new ProductService(dao);
+		service.findAll();
+
+		verify(dao).findAll();
+		verifyNoMoreInteractions(dao);
+	}
 }
 
