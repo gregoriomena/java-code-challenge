@@ -32,5 +32,15 @@ class ProductControllerTest {
 		verify(service).save(productDTO);
 		verifyNoMoreInteractions(service);
 	}
+
+	@Test
+	void read(@Mock ProductService service) {
+
+		ProductController controller = new ProductController(service);
+		controller.read();
+
+		verify(service).findAll();
+		verifyNoMoreInteractions(service);
+	}
 }
 

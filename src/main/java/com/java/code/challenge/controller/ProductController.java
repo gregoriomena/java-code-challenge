@@ -1,7 +1,10 @@
 package com.java.code.challenge.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +29,11 @@ public class ProductController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void save(@RequestBody ProductDTO product) {
 		service.save(product);
+	}
+
+	@GetMapping()
+	public List<ProductDTO> read() {
+		return service.findAll();
 	}
 }
 
