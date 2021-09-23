@@ -8,4 +8,5 @@ public interface Dao<T> {
 	List<T> findAll();
 	T findById(Long id);
 	void update(T productBO);
+	void delete(Long id);
 }

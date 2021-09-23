@@ -39,4 +39,10 @@ public class ProductList implements Storage<Product> {
 		products.put(productBO.getId(), productBO);
 	}
 
+	@Override
+	public void remove(Long id) {
+		products.remove(id);
+	}
+
+
 }

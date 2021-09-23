@@ -37,4 +37,10 @@ public class ProductDao implements Dao<Product> {
 	public void update(Product productBO) {
 		products.refresh(productBO);
 	}
+
+
+	@Override
+	public void delete(Long id) {
+		products.remove(id);
+	}
 }

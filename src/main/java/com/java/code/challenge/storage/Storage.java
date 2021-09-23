@@ -10,5 +10,6 @@ public interface Storage<T> {
 	List<T> list();
 	T get(Long id);
 	void refresh(Product productBO);
+	void remove(Long id);
 
 }

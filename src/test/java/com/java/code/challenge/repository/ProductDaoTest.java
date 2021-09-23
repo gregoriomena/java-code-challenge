@@ -51,4 +51,17 @@ class ProductDaoTest {
 		verify(storage).refresh(product);
 		verifyNoMoreInteractions(storage);
 	}
+
+
+	@Test
+	void remove(@Mock Storage<Product> storage) {
+
+		long productId = new Date().getTime();
+		ProductDao dao = new ProductDao(storage);
+
+		dao.delete(productId);
+
+		verify(storage).remove(productId);
+		verifyNoMoreInteractions(storage);
+	}
 }
