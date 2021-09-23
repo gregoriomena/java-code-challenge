@@ -44,5 +44,23 @@ class ProductServiceTest {
 		verify(dao).findAll();
 		verifyNoMoreInteractions(dao);
 	}
+
+
+	@Test
+	void update(@Mock ProductDao dao) {
+
+		long productId = new Date().getTime();
+		String productName = generateRandomLetters(5);
+		String productDescription = generateRandomLetters(150);
+
+		Product productBO = new Product(productId, productName, productDescription);
+		ProductDTO productDTO = new ProductDTO(productId, productName, productDescription);
+
+		ProductService service = new ProductService(dao);
+		service.update(productDTO);
+
+		verify(dao).update(productBO);
+		verifyNoMoreInteractions(dao);
+	}
 }
 

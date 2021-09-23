@@ -36,4 +36,9 @@ public class ProductService {
 		return products.stream().map(iterProduct -> mapper.sourceToDestination(iterProduct))
 				.collect(Collectors.toList());
 	}
+
+	public void update(ProductDTO product) {
+		Product productBO = mapper.destinationToSource(product);
+		dao.update(productBO);
+	}
 }
