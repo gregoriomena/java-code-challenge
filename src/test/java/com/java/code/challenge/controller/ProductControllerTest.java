@@ -1,6 +1,7 @@
 package com.java.code.challenge.controller;
 
 import static com.java.code.challenge.util.ProductUtil.generateRandomLetters;
+import static com.java.code.challenge.util.ProductUtil.randomProductDTO;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -40,6 +41,19 @@ class ProductControllerTest {
 		controller.read();
 
 		verify(service).findAll();
+		verifyNoMoreInteractions(service);
+	}
+
+
+	@Test
+	void update(@Mock ProductService service) {
+
+		ProductDTO productDTO = randomProductDTO();
+
+		ProductController controller = new ProductController(service);
+		controller.update(productDTO);
+
+		verify(service).update(productDTO);
 		verifyNoMoreInteractions(service);
 	}
 }
