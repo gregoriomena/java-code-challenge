@@ -21,4 +21,9 @@ public class ProductList implements Storage<Product> {
 		products.add(element);
 	}
 
+	@Override
+	public List<Product> list() {
+		return new ArrayList<>(products);
+	}
+
 }

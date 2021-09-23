@@ -1,5 +1,7 @@
 package com.java.code.challenge.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +21,10 @@ public class ProductDao implements Dao<Product> {
 	@Override
 	public void save(Product product) {
 		products.add(product);
+	}
+
+	@Override
+	public List<Product> findAll() {
+		return products.list();
 	}
 }

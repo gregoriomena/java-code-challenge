@@ -28,4 +28,14 @@ class ProductDaoTest {
 		verify(storage).add(product);
 		verifyNoMoreInteractions(storage);
 	}
+
+	@Test
+	void read(@Mock Storage<Product> storage) {
+
+		ProductDao dao = new ProductDao(storage);
+		dao.findAll();
+
+		verify(storage).list();
+		verifyNoMoreInteractions(storage);
+	}
 }

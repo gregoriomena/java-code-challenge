@@ -19,25 +19,14 @@ public class SwaggerConfig {
 
 	@Bean
 	public Docket apiDocket() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
+		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage("com.java.code.challenge.controller"))
-				.paths(PathSelectors.any())
-				.build()
-				.apiInfo(getApiInfo())
-				;
+				.paths(PathSelectors.any()).build().apiInfo(getApiInfo());
 	}
 
 	private ApiInfo getApiInfo() {
-		return new ApiInfo(
-				"Java Code Challenge API",
-				"Demo for Inditex",
-				"1.0",
-				"https://www.hiberus.com/",
-				new Contact("Gregorio Mena", "https://www.hiberus.com/", "gmena@hiberus.com"),
-				"",
-				"",
-				Collections.emptyList()
-				);
+		return new ApiInfo("Java Code Challenge API", "Demo for Inditex", "1.0", "https://www.hiberus.com/",
+				new Contact("Gregorio Mena", "https://www.hiberus.com/", "gmena@hiberus.com"), "", "",
+				Collections.emptyList());
 	}
 }
