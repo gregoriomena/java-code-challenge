@@ -69,5 +69,17 @@ class ProductControllerTest {
 		verify(service).delete(productId);
 		verifyNoMoreInteractions(service);
 	}
+
+	@Test
+	void search(@Mock ProductService service) {
+
+
+		ProductController controller = new ProductController(service);
+
+		controller.search(-1, "", "");
+
+		verify(service).search(-1, "", "");
+		verifyNoMoreInteractions(service);
+	}
 }
 
