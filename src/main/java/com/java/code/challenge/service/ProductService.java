@@ -45,4 +45,17 @@ public class ProductService {
 	public void delete(Long id) {
 		dao.delete(id);
 	}
+
+	public List<ProductDTO> search(long id, String name, String description) {
+
+		return dao.findAll().stream().filter(iterProduct -> checkFilter(iterProduct, id, name, description))
+				.map(iterProduct -> mapper.sourceToDestination(iterProduct)).collect(Collectors.toList());
+	}
+
+	private boolean checkFilter(Product iterProduct, long id, String name, String description) {
+		return (id < 0 || iterProduct.getId().equals(id))
+				&& (name.isBlank() || iterProduct.getName().toLowerCase().contains(name.toLowerCase()))
+				&& (description.isBlank()
+						|| iterProduct.getDescription().toLowerCase().contains(description.toLowerCase()));
+	}
 }

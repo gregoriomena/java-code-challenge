@@ -1,10 +1,16 @@
 package com.java.code.challenge.service;
 
 import static com.java.code.challenge.util.ProductUtil.generateRandomLetters;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -73,6 +79,29 @@ class ProductServiceTest {
 
 		verify(dao).delete(productId);
 		verifyNoMoreInteractions(dao);
+	}
+
+	@Test
+	void search(@Mock ProductDao dao) {
+
+
+		Product productBike = new Product(new Date().getTime(), "Bike", "Small bike");
+		Product productCamera = new Product(new Date().getTime(), "Camera", "Sony camera");
+		List<Product> products = Arrays.asList(productBike, productCamera);
+
+		when(dao.findAll()).thenReturn(products);
+
+		ProductService service = new ProductService(dao);
+		List<ProductDTO> searchResult = service.search(-1, "bik", "");
+
+		assertFalse(searchResult.isEmpty());
+		assertEquals(1, searchResult.size());
+		assertEquals("Bike", searchResult.get(0).getName());
+
+		searchResult = service.search(-1, "noesta", "");
+
+		assertTrue(searchResult.isEmpty());
+
 	}
 }
 
